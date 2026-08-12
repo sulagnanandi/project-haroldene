@@ -72,4 +72,11 @@ def draw():
                 py5.text(str(visits), i*spacing+offset, j*spacing+offset)
 
     if step_count >= max_steps:
-        all_visits = 
+        all_visits = np.array(grid).flatten()
+        print("total number of lily pads:", cols*rows)
+        print("visited lily pads:", np.count_nonzero(all_visits))
+        print("coverage:", np.count_nonzero(all_visits)/(cols*rows)*100,"%")
+        print(grid)
+        py5.no_loop()
+
+py5.run_sketch()
