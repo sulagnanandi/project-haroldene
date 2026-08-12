@@ -7,7 +7,7 @@ import numpy as np
 moves = [{"dx": 0, "dy": -1}, {"dx": 0, "dy": 1}, {"dx": -1, "dy": 0}, {"dx": 1, "dy": 0}]
 step_count = 0
 max_steps = 1000
-a = 100
+a = 1.01 #pressure to share the wealth
 
 cols = 10
 rows = 10
@@ -47,7 +47,7 @@ def draw():
     y_new = (y + step["dy"]) % rows
     grid[x_new][y_new] += 1
 
-    print(x_new, y_new)
+    # print(x_new, y_new)
     py5.stroke(0,255,0)
     py5.stroke_weight(2)
 
@@ -76,7 +76,9 @@ def draw():
         print("total number of lily pads:", cols*rows)
         print("visited lily pads:", np.count_nonzero(all_visits))
         print("coverage:", np.count_nonzero(all_visits)/(cols*rows)*100,"%")
-        print(grid)
+        print("variance:", np.var(all_visits))
+        #print("quartiles:", np.percentile(all_visits,[25,50,75]))
+        print("max:", np.max(all_visits))
         py5.no_loop()
 
 py5.run_sketch()
