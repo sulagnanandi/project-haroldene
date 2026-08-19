@@ -180,6 +180,22 @@ class WSAWRunner:
         
         avg_var_for_specific_a_value = np.average(vars_over_specific_a_value)
         return avg_var_for_specific_a_value
+    
+    def get_avg_var_for_specific_a_value(self, specific_a_value):
+            """
+            need a-value
+            need variance of node visits
+            """
+            
+            vars_over_specific_a_value = []
+            
+            for i in range(self.num_trials):
+                my_wsaw = WeaklySelfAvoidingWalk(self.weakener, specific_a_value)
+                var = my_wsaw.full_walk()
+                vars_over_specific_a_value.append(var)
+            
+            avg_var_for_specific_a_value = np.average(vars_over_specific_a_value)
+            return avg_var_for_specific_a_value
 
 if __name__ == "__main__":
     
@@ -202,7 +218,7 @@ if __name__ == "__main__":
     # next: save graphs in a folder
     # next: what else to graph?
     
-    # coverage time vs a-value
+    # coverage time vs a-value --> THIS NEXT
     # quartiles vs a-value
     
     # final position after 1000 (or smaller, 10, 20) steps
